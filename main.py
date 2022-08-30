@@ -60,6 +60,13 @@ def get_weather(region):
     wind_dir = response["now"]["windDir"]
     return weather, temp, wind_dir
  
+def get_Gregorian(birthday):
+    birthday_year = birthday.split("-")[0]
+    # 判断是否为农历生日
+    if birthday_year[0] == "r":
+        isGregorian = "农历"
+    else
+        isGregorian = "阳历"
  
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
@@ -178,10 +185,11 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
     for key, value in birthdays.items():
         # 获取距离下次生日的时间
         birth_day = get_birthday(value["birthday"], year, today)
+        gregorian = get_Gregorian(value["birthday"])
         if birth_day == 0:
-            birthday_data = "今天{}生日哦，祝{}生日快乐！".format(value["name"], value["name"])
+            birthday_data = "今天{}{}生日哦，祝{}生日快乐！".format(value["name"], gregorian, value["name"])
         else:
-            birthday_data = "距离{}的生日还有{}天".format(value["name"], birth_day)
+            birthday_data = "距离{}的{}生日还有{}天".format(value["name"], gregorian, birth_day)
         # 将生日数据插入data
         data["data"][key] = {"value": birthday_data, "color": get_color()}
     headers = {
