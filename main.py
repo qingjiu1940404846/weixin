@@ -59,15 +59,7 @@ def get_weather(region):
     # 风向
     wind_dir = response["now"]["windDir"]
     return weather, temp, wind_dir
- 
-def get_Gregorian(birthday):
-    birthday_year = birthday.split("-")[0]
-    # 判断是否为农历生日
-    if birthday_year[0] == "r":
-        isGregorian = "农历"
-    else
-        isGregorian = "阳历"
-     return isGregorian
+
  
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
