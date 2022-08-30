@@ -73,6 +73,7 @@ def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
     # 判断是否为农历生日
     if birthday_year[0] == "r":
+        gregorian = "农历"
         r_mouth = int(birthday.split("-")[1])
         r_day = int(birthday.split("-")[2])
         # 获取农历生日的今年对应的月和日
@@ -88,6 +89,7 @@ def get_birthday(birthday, year, today):
         year_date = date(year, birthday_month, birthday_day)
  
     else:
+        gregorian = "阳历"
         # 获取国历生日的今年对应月和日
         birthday_month = int(birthday.split("-")[1])
         birthday_day = int(birthday.split("-")[2])
@@ -107,7 +109,7 @@ def get_birthday(birthday, year, today):
     else:
         birth_date = year_date
         birth_day = str(birth_date.__sub__(today)).split(" ")[0]
-    return birth_day
+    return birth_day, gregorian
  
  
 def get_ciba():
@@ -185,8 +187,8 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
     }
     for key, value in birthdays.items():
         # 获取距离下次生日的时间
-        birth_day = get_birthday(value["birthday"], year, today)
-        gregorian = get_Gregorian(value["birthday"])
+        birth_day, gregorian = get_birthday(value["birthday"], year, today)
+        #gregorian = get_Gregorian(value["birthday"])
         if birth_day == 0:
             birthday_data = "今天{}{}生日哦，祝{}生日快乐！".format(value["name"], gregorian, value["name"])
         else:
