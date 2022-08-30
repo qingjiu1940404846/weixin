@@ -67,6 +67,7 @@ def get_Gregorian(birthday):
         isGregorian = "农历"
     else
         isGregorian = "阳历"
+     return isGregorian
  
 def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
