@@ -65,7 +65,7 @@ def get_birthday(birthday, year, today):
     birthday_year = birthday.split("-")[0]
     # 判断是否为农历生日
     if birthday_year[0] == "r":
-        gregorian = 1
+        gregorian = "农历"
         r_mouth = int(birthday.split("-")[1])
         r_day = int(birthday.split("-")[2])
         # 获取农历生日的今年对应的月和日
@@ -81,7 +81,7 @@ def get_birthday(birthday, year, today):
         year_date = date(year, birthday_month, birthday_day)
  
     else:
-        gregorian = 2
+        gregorian = "阳历"
         # 获取国历生日的今年对应月和日
         birthday_month = int(birthday.split("-")[1])
         birthday_day = int(birthday.split("-")[2])
